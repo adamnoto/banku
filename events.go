@@ -1,33 +1,33 @@
 package main
 
 type Event struct {
-	name string
-	id   *string `omitempty`
-	data *map[string]string
+	Name string             `json:"name"`
+	Id   *string            `json:"id,omitempty"`
+	Data *map[string]string `json:"data"`
 }
 
 func createCuponEvent(name string) Event {
 	return Event{
-		name: "CreateCoupon",
-		data: &map[string]string{
-			name: name,
+		Name: "CreateCoupon",
+		Data: &map[string]string{
+			"name": name,
 		},
 	}
 }
 
 func invalidateCouponEvent(id string) Event {
 	return Event{
-		name: "InvalidateCoupon",
-		id:   id,
+		Name: "InvalidateCoupon",
+		Id:   &id,
 	}
 }
 
 func acceptCouponEvent(id string, transactionId string) Event {
 	return Event{
-		name: "AcceptCoupon",
-		id:   id,
-		data: &map[string]string{
-			transactionId: transactionId,
+		Name: "AcceptCoupon",
+		Id:   &id,
+		Data: &map[string]string{
+			"transactionId": transactionId,
 		},
 	}
 }
