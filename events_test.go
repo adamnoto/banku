@@ -6,41 +6,29 @@ import (
 )
 
 func TestCreateCoupon(t *testing.T) {
-	expectedResult := Event{
-		Name: "CreateCoupon",
-		Data: &map[string]string{
-			"name": "Sushi Bonanza",
-		},
+	expectedResult := CreateEvent{
+		CouponName: "Sushi Bonanza",
 	}
 
-	eventPayload := createCuponEvent("Sushi Bonanza")
+	event := newCouponEvent("Sushi Bonanza")
 
-	assert.Equal(t, expectedResult, eventPayload)
+	assert.Equal(t, expectedResult, event)
 }
 
 func TestInvalidateCoupon(t *testing.T) {
 	id := "123"
-	expectedResult := Event{
-		Name: "InvalidateCoupon",
-		Id:   &id,
-	}
 
-	eventPayload := invalidateCouponEvent("123")
+	event := newInvalidateEvent(id)
 
-	assert.Equal(t, expectedResult, eventPayload)
+	assert.Equal(t, id, *event.CouponId)
 }
 
 func TestAcceptCoupon(t *testing.T) {
 	id := "123"
-	expectedResult := Event{
-		Name: "AcceptCoupon",
-		Id:   &id,
-		Data: &map[string]string{
-			"transactionId": "T1234",
-		},
-	}
+	transId := "T028MN"
 
-	eventPayload := acceptCouponEvent(id, "T1234")
+	event := newAcceptEvent(id, transId)
 
-	assert.Equal(t, expectedResult, eventPayload)
+	assert.Equal(t, id, *event.CouponId)
+	assert.Equal(t, transId, event.TransID)
 }

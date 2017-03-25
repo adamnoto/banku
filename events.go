@@ -1,33 +1,42 @@
 package main
 
+/* each event expressed as its own struct */
+
 type Event struct {
-	Name string             `json:"name"`
-	Id   *string            `json:"id,omitempty"`
-	Data *map[string]string `json:"data"`
+	CouponId *string `json:"id,omitempty"`
 }
 
-func createCuponEvent(name string) Event {
-	return Event{
-		Name: "CreateCoupon",
-		Data: &map[string]string{
-			"name": name,
-		},
+type CreateEvent struct {
+	Event
+	CouponName string `json:"couponName"`
+}
+
+type InvalidateEvent struct {
+	Event
+}
+
+type AcceptEvent struct {
+	Event
+	TransID string `json:"transId"`
+}
+
+/* helper to create events */
+
+func newCouponEvent(name string) CreateEvent {
+	return CreateEvent{
+		CouponName: name,
 	}
 }
 
-func invalidateCouponEvent(id string) Event {
-	return Event{
-		Name: "InvalidateCoupon",
-		Id:   &id,
+func newInvalidateEvent(id string) InvalidateEvent {
+	return InvalidateEvent{
+		Event{CouponId: &id},
 	}
 }
 
-func acceptCouponEvent(id string, transactionId string) Event {
-	return Event{
-		Name: "AcceptCoupon",
-		Id:   &id,
-		Data: &map[string]string{
-			"transactionId": transactionId,
-		},
-	}
+func newAcceptEvent(id string, transactionId string) AcceptEvent {
+	event := new(AcceptEvent)
+	event.CouponId = &id
+	event.TransID = transactionId
+	return *event
 }
