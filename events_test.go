@@ -1,34 +1,57 @@
-package main
+package main_test
 
 import (
-	"github.com/stretchr/testify/assert"
-	"testing"
+	. "banku"
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
 )
 
-func TestCreateCoupon(t *testing.T) {
-	expectedResult := CreateEvent{
-		CouponName: "Sushi Bonanza",
-	}
+var _ = Describe("Event", func() {
+	var (
+		accId  = "AB928323-2837232832-3283232-232"
+		amount = 2000
+	)
 
-	event := newCouponEvent("Sushi Bonanza")
+	Describe("NewCreateAccountEvent", func() {
+		It("can create a create account event", func() {
+			name := "John Smith"
 
-	assert.Equal(t, expectedResult, event)
-}
+			event := NewCreateAccountEvent(name)
 
-func TestInvalidateCoupon(t *testing.T) {
-	id := "123"
+			Expect(event.AccName).To(Equal(name))
+			Expect(event.AccId).NotTo(BeNil())
+			Expect(event.Type).To(Equal("CreateEvent"))
+		})
+	})
 
-	event := newInvalidateEvent(id)
+	Describe("NewDepositEvent", func() {
+		It("can create a deposit event", func() {
+			event := NewDepositEvent(accId, amount)
 
-	assert.Equal(t, id, *event.CouponId)
-}
+			Expect(event.AccId).To(Equal(accId))
+			Expect(event.Amount).To(Equal(amount))
+			Expect(event.Type).To(Equal("DepositEvent"))
+		})
+	})
 
-func TestAcceptCoupon(t *testing.T) {
-	id := "123"
-	transId := "T028MN"
+	Describe("NewWithdrawEvent", func() {
+		It("can create a withdrawal event", func() {
+			event := NewWithdrawEvent(accId, amount)
 
-	event := newAcceptEvent(id, transId)
+			Expect(event.AccId).To(Equal(accId))
+			Expect(event.Amount).To(Equal(amount))
+			Expect(event.Type).To(Equal("WithdrawEvent"))
+		})
+	})
 
-	assert.Equal(t, id, *event.CouponId)
-	assert.Equal(t, transId, event.TransID)
-}
+	Describe("NewTransferEvent", func() {
+		It("can create a transfer event", func() {
+			event := NewTransferEvent(accId, "T0", amount)
+
+			Expect(event.AccId).To(Equal(accId))
+			Expect(event.Amount).To(Equal(amount))
+			Expect(event.TargetId).To(Equal("T0"))
+			Expect(event.Type).To(Equal("TransferEvent"))
+		})
+	})
+})
