@@ -37,10 +37,8 @@ func main() {
 
 	switch *act {
 	case "producer":
-		// command part
 		mainProducer()
 	case "consumer":
-		// query part
 		if part32int, err := strconv.ParseInt(*partition, 10, 32); err == nil {
 			mainConsumer(int32(part32int))
 		}
