@@ -33,6 +33,42 @@
 			"revisionTime": "2016-08-05T00:47:13Z"
 		},
 		{
+			"checksumSHA1": "z/LpkvizB5Hbu55NglfKccM2HeQ=",
+			"path": "github.com/go-redis/redis",
+			"revision": "18dcec21440a5c6e96da08fcdce732bb9436c190",
+			"revisionTime": "2017-03-24T11:33:35Z"
+		},
+		{
+			"checksumSHA1": "XUqPA2V7/z8JyWnCPclCztcXO7M=",
+			"path": "github.com/go-redis/redis/internal",
+			"revision": "18dcec21440a5c6e96da08fcdce732bb9436c190",
+			"revisionTime": "2017-03-24T11:33:35Z"
+		},
+		{
+			"checksumSHA1": "GQZsUVg/+6UpQAYpc4luMvMutSI=",
+			"path": "github.com/go-redis/redis/internal/consistenthash",
+			"revision": "18dcec21440a5c6e96da08fcdce732bb9436c190",
+			"revisionTime": "2017-03-24T11:33:35Z"
+		},
+		{
+			"checksumSHA1": "VP0K8vvf716n6xuzAZTvpz+wTwc=",
+			"path": "github.com/go-redis/redis/internal/hashtag",
+			"revision": "18dcec21440a5c6e96da08fcdce732bb9436c190",
+			"revisionTime": "2017-03-24T11:33:35Z"
+		},
+		{
+			"checksumSHA1": "R3ZMjMsT4Be82Gstb7r8ijyQEaw=",
+			"path": "github.com/go-redis/redis/internal/pool",
+			"revision": "18dcec21440a5c6e96da08fcdce732bb9436c190",
+			"revisionTime": "2017-03-24T11:33:35Z"
+		},
+		{
+			"checksumSHA1": "4+jL3+y/up48Cfew+2llzjGSf5A=",
+			"path": "github.com/go-redis/redis/internal/proto",
+			"revision": "18dcec21440a5c6e96da08fcdce732bb9436c190",
+			"revisionTime": "2017-03-24T11:33:35Z"
+		},
+		{
 			"checksumSHA1": "p/8vSviYF91gFflhrt5vkyksroo=",
 			"path": "github.com/golang/snappy",
 			"revision": "553a641470496b2327abcac10b36396bd98e45c9",
@@ -69,6 +105,12 @@
 			"revisionTime": "2016-11-28T21:05:44Z"
 		},
 		{
+			"checksumSHA1": "zmC8/3V4ls53DJlNTKDZwPSC/dA=",
+			"path": "github.com/satori/go.uuid",
+			"revision": "5bf94b69c6b68ee1b541973bb8e1144db23a194b",
+			"revisionTime": "2017-03-21T23:07:31Z"
+		},
+		{
 			"checksumSHA1": "K0crHygPTP42i1nLKWphSlvOQJw=",
 			"path": "github.com/stretchr/objx",
 			"revision": "1a9d0bb9f541897e62256577b352fdbc1fb4fd94",
@@ -99,9 +141,21 @@
 			"revisionTime": "2017-01-30T11:31:45Z"
 		},
 		{
+			"checksumSHA1": "+KwJYe1p4gXvKVaqpL0WTqk9uFk=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "afadfcc7779c1f4db0f6f6438afcb108d9c9c7cd",
+			"revisionTime": "2017-03-25T14:33:42Z"
+		},
+		{
+			"checksumSHA1": "0KwOlQV1dNUh9X8t+5s7nX5bqfk=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": "a3f3340b5840cee44f372bddb5880fcbc419b46a",
+			"revisionTime": "2017-02-08T14:18:51Z"
+		},
+		{
 			"path": "https://github.com/stretchr/testify",
 			"revision": ""
 		}
 	],
-	"rootPath": "lab/couponku"
+	"rootPath": "banku"
 }
