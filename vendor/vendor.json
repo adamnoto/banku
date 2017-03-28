@@ -9,6 +9,12 @@
 			"revisionTime": "2017-03-12T22:14:04Z"
 		},
 		{
+			"checksumSHA1": "0+X/yXfBdnsVYD+lRo10AzOo+9o=",
+			"path": "github.com/bsm/sarama-cluster",
+			"revision": "82cfa5798a3898e4cf7d913f4a448911af83c3f5",
+			"revisionTime": "2017-03-27T10:36:00Z"
+		},
+		{
 			"checksumSHA1": "dvabztWVQX8f6oMLRyv4dLH+TGY=",
 			"path": "github.com/davecgh/go-spew/spew",
 			"revision": "346938d642f2ec3594ed81d874461961cd0faa76",
@@ -151,6 +157,10 @@
 			"path": "gopkg.in/yaml.v2",
 			"revision": "a3f3340b5840cee44f372bddb5880fcbc419b46a",
 			"revisionTime": "2017-02-08T14:18:51Z"
+		},
+		{
+			"path": "https://github.com/bsm/sarama-cluster",
+			"revision": ""
 		},
 		{
 			"path": "https://github.com/stretchr/testify",

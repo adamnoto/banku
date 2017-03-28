@@ -10,6 +10,7 @@ import (
 var (
 	brokers = []string{"127.0.0.1:9092"}
 	topic   = "xbanku-transactions-t3"
+	topics  = []string{topic}
 )
 
 func newKafkaConfiguration() *sarama.Config {

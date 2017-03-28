@@ -5,18 +5,20 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/Shopify/sarama"
+	cluster "github.com/bsm/sarama-cluster"
 	"os"
 )
 
 func mainConsumer(partition int32) {
-	kafka := newKafkaConsumer()
-	defer kafka.Close()
+	config := cluster.NewConfig()
+	config.Consumer.Offsets.Initial = sarama.OffsetOldest
 
-	consumer, err := kafka.ConsumePartition(topic, partition, sarama.OffsetOldest)
+	consumer, err := cluster.NewConsumer(brokers, "banku-consumer", topics, config)
 	if err != nil {
 		fmt.Printf("Kafka error: %s\n", err)
 		os.Exit(-1)
 	}
+	defer consumer.Close()
 
 	go consumeEvents(consumer)
 
@@ -25,7 +27,7 @@ func mainConsumer(partition int32) {
 	fmt.Println("Terminating...")
 }
 
-func consumeEvents(consumer sarama.PartitionConsumer) {
+func consumeEvents(consumer *cluster.Consumer) {
 	var msgVal []byte
 	var log interface{}
 	var logMap map[string]interface{}
@@ -34,9 +36,16 @@ func consumeEvents(consumer sarama.PartitionConsumer) {
 
 	for {
 		select {
-		case err := <-consumer.Errors():
-			fmt.Printf("Kafka error: %s\n", err)
+		case err, more := <-consumer.Errors():
+			if more {
+				fmt.Printf("Kafka error: %s\n", err)
+			}
+		case ntf, more := <-consumer.Notifications():
+			if more {
+				fmt.Printf("Rebalanced: %+v\n", ntf)
+			}
 		case msg := <-consumer.Messages():
+			consumer.MarkOffset(msg, "")
 			msgVal = msg.Value
 
 			if err = json.Unmarshal(msgVal, &log); err != nil {
