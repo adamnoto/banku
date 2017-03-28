@@ -11,6 +11,10 @@ To run this project:
 5. Run `go build && ./banku --act=consumer` to run the program as consumer
 6. Run `go build && ./banku` to run the program as producer
 
+To run testing:
+
+    docker-compose run app ginkgo
+
 Or, you may as well follow the tutorial here:
 
 Cheers, Adam!

@@ -1,0 +1,15 @@
+version: "2.0"
+
+services:
+  app:
+    build: .
+    working_dir: /go/src/banku
+    links:
+      - redis
+    environment:
+      REDIS_URL: redis:6379
+
+  redis:
+    image: redis:alpine
+
+# docker-compose run app ginkgo
