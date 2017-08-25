@@ -44,7 +44,7 @@ func consumeEvents(consumer sarama.PartitionConsumer) {
 			} else {
 				logMap = log.(map[string]interface{})
 				logType := logMap["Type"]
-				fmt.Printf("Processing %s:\n%s\n", logMap["Type"], string(msgVal))
+				fmt.Printf("Processing %s:\n%s\n", logType, string(msgVal))
 
 				switch logType {
 				case "CreateEvent":
